@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>jQuery.duplicate Demo</title>
+<style>
+* {font-family: sans-serif;}
+h2 {font-size: 110%;}
+
+.error {
+  color: red;
+}
+</style>
+</head>
+<body>
+  <h2>Phone Numbers (minimum 1, no maximum)</h2>
+  <button data-duplicate-add="phone">+ add</button>
+    <button data-duplicate-remove="phone">- remove</button>
+  
+  <div data-duplicate="phone">
+    <button data-duplicate-remove="phone">-</button>
+    <input type="tel" placeholder="phone number">
+  </div>
+  
+<section>
+<h2 data-duplicate-add="email" data-duplicate-max="5">Emails (click to add. no minimum, maximum 3)</h2>
+  <div data-duplicate="email" data-duplicate-min="0">
+      <button data-duplicate-add="email">+</button>
+      <button data-duplicate-remove="email">-</button>
+      <input type="email" placeholder="some@gmail.com">
+  </div>
+</section>
+  <script>
+    // not needed, just an example of listening to events triggered by the plugin
+    $('body').on('duplicate.error', function(ev){
+      console.log('refused to add/remove', this);
+      $(ev.target).addClass('error');
+      setTimeout(function(){
+        $(ev.target).removeClass('error');
+      }, 1500);
+    });
+  </script>
+<script src="jquery.duplicate.js"></script>
+</body>
+</html>
